@@ -8,6 +8,8 @@ load_dotenv()
 intents = discord.Intents.default()
 intents.members = True
 
+
+
 bot = commands.Bot(command_prefix="!", intents=intents)
 
 async def setup_verification_message():
@@ -58,7 +60,15 @@ async def on_raw_reaction_add(payload):
                         print(f"{member} changed their role to v-member after verification.")
 
 async def start_bot():
-    await bot.start(os.getenv('DISCORD_TOKEN'))
+    TOKEN_DS = os.getenv('TOKEN_DS')
+    print("TOKEN: ", TOKEN_DS)
+    try:
+        await bot.start(TOKEN_DS)
+    except discord.errors.LoginFailure as e:
+        print(f"Error al iniciar sesión: {e}")
+    except Exception as e:
+        print(f"Ocurrió un error: {e}")
+
 
 
 
