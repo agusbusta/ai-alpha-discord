@@ -31,7 +31,7 @@ class Events(commands.Cog):
         channel = self.bot.get_channel(payload.channel_id)
         if channel and str(payload.emoji) == '✅':
             message = await channel.fetch_message(payload.message_id)
-            if message.author == self.bot.user and message.content == "Please react to this message with a ✅":
+            if message.author == self.bot.user and message.content == "Please react to this message with a ✅ ":
                 guild = self.bot.get_guild(payload.guild_id)
                 if guild:
                     member = guild.get_member(payload.user_id)
